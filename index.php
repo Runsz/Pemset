@@ -36,7 +36,7 @@
     <div class="container">
         <header class="header">
             <h1 class="judul">PemSet</h1>
-            <form class="search">
+            <form class="search" method="post" action="index.php">
                 <input placeholder="   Search" type="text">
                 <button type="" class="btn">Cari</button>
             </form>
