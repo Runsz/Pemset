@@ -1,0 +1,193 @@
+*{
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+    background-color: #D6D6D6;
+}
+.btn:hover{
+    cursor: pointer;
+}
+
+header{
+    display: flex;
+    background-color: #287EFF;
+    color: #FFFFFF;
+    height: 50px;
+    padding: 10px 40px 25px;
+}
+header h1{
+    width: 75%;
+    font-size: 33pt;
+}
+header .search{
+    width: 25%;
+    padding-top: 20px;
+}
+header .search input{
+    height: 30px;
+    width: 75%;
+    background-color: #569AFF;
+    border: none;
+    border-radius: 5px;
+} 
+header .search button{
+    height: 30px;
+    width: 20%;
+    background-color: #569AFF;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+} 
+::placeholder{
+    color: #FFFFFF;
+}
+
+.add{
+    display: flex;
+    padding: 20px 40px 0;
+}
+.add .btn-add{
+    width: 75%;
+}
+.add .btn-add .btn{
+    height: 35px;
+    background-color: #00BD13;
+    border: none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 12pt;
+}
+.add .sortir{
+    width: 25%;
+    display: flex;
+}
+.add .sortir p{
+    margin-right: 5px;
+    padding-top: 3px;
+}
+.add .sortir .sort-item{
+    width: 100px;  
+    height: 30px;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #569AFF;
+    color: #FFFFFF;
+}
+.add .sortir .btn-sort{
+    width: 60px;
+    height: 30px;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #569AFF;
+    color: #FFFFFF;
+}
+
+main{
+    padding: 10px 40px;
+    text-align: center;
+}
+main table{
+    margin: auto;
+    border-collapse: collapse;
+}
+main h2{
+    font-size: 20pt;
+    margin-bottom: 10px;
+}
+main table tr th{
+    background-color: #287EFF;
+    font-weight: 100;
+    border: 2px solid #D6D6D6;
+    color: #FFFFFF;
+    width: 150px;
+    padding: 10px;
+}
+main table tr td{
+    background-color: #FFFFFF;
+    font-weight: 100;
+    border: 2px solid #D6D6D6;
+    color: #000000;
+    width: 150px;
+    padding: 10px;
+}
+main .btn-edit{
+    border: 0;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #00BD13;
+    color: #FFFFFF;
+}
+
+
+.container-form-pinjam{
+    width: 50%;
+    background-color: #FFFFFF;
+    padding: 20px 0px 30px;
+    margin: 30px auto;
+    border-radius: 10px;
+    box-shadow: 5px 5px #6b6b6b;
+}
+.container-form-pinjam h1{
+    margin-top: 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.container-form-pinjam .pilihan{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.container-form-pinjam .pilihan .btn{
+    padding: 8px;
+    margin: 5px;
+    background-color: #82b3fc;
+    border: 0;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 12pt;
+}
+.container-form-pinjam form{
+    width: 58%;
+    margin: auto;
+}
+.container-form-pinjam form select{
+    width: 100%;
+    padding: 7px;
+    margin: 2px 0 10px;
+    border: 1px solid #287EFF;
+    border-radius: 5px;
+}
+.container-form-pinjam form input{
+    width: 96%;
+    padding: 7px;
+    margin: 2px 0 10px;
+    border: 1px solid #287EFF;
+    border-radius: 5px;
+}
+.container-form-pinjam form .button{
+    margin-top: 15px;
+    width: 100%;
+    text-align: center;
+}
+.container-form-pinjam form .button .btn-cancel{
+    width: 48.5%;
+    padding: 8px;
+    margin-right: 3px;
+    background-color: #FF0000;
+    border: 0;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 12pt;
+}
+.container-form-pinjam form .button .btn-simpan{
+    width: 48.5%;
+    padding: 8px;
+    margin-left: 3px;
+    background-color: #00BD13;
+    border: 0;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 12pt;
+}
