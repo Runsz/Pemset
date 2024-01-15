@@ -1,6 +1,8 @@
 <?php
     include 'koneksi.php';
 
+    $status_penambahan = null;
+
     if (isset($_POST['simpan'])) {
         $status = $_POST['status'];
         
@@ -22,11 +24,15 @@
             $aset = mysqli_fetch_array($sql, MYSQLI_ASSOC);
 
             if ($user_pinjam != NULL) {
-                echo 'User ini sedang meminjam aset';
+                //header('Location: form-pinjam.php?sudah&tambah=gagal');
+                //echo 'User ini sedang meminjam aset';
+                $status_penambahan = "*User ini sedang meminjam aset";
             }
             else{
                 if ($jml > $aset['jml_aset']) {
-                    echo 'jumlah pinjam melebihi jumlah aset';
+                    $status_penambahan = "*jumlah pinjam melebihi jumlah aset";
+                    //echo 'jumlah pinjam melebihi jumlah aset';
+                    //header('Location: form-pinjam.php?sudah&tambah=gagal');
                 }
                 else {
                     $query = "INSERT INTO `transaksi_peminjaman`
@@ -61,7 +67,9 @@
             $aset = mysqli_fetch_array($sql, MYSQLI_ASSOC);
 
             if ($jml > $aset['jml_aset']) {
-                echo 'jumlah pinjam melebihi jumlah aset';
+                $status_penambahan = "*jumlah pinjam melebihi jumlah aset";
+                //echo 'jumlah pinjam melebihi jumlah aset';
+                //header('Location: form-pinjam.php?belum&tambah=gagal');
             }
             else {
                 $query = "INSERT INTO `users`(`nama`, `instansi`, `bagian`) 
@@ -107,7 +115,7 @@
         <h1>Form Peminjaman Aset</h1>
         <div class="pilihan">
             <a href="form-pinjam.php?sudah"><button class="btn" <?php if(isset($_GET['sudah'])) { echo 'style="background-color: #287EFF;"';} ?>>Sudah Pernah Meminjam</button></a>
-            <a href="form-pinjam.php?belum"><button class="btn"<?php if(isset($_GET['belum'])) { echo 'style="background-color: #287EFF;"';} ?>>Belum Pernah Meminjam</button></a>
+            <a href="form-pinjam.php?belum"><button class="btn"<?php if(!isset($_GET['sudah'])) { echo 'style="background-color: #287EFF;"';} ?>>Belum Pernah Meminjam</button></a>
         </div>
         
         <?php 
@@ -123,7 +131,7 @@
                     <label for="">Nama Aset</label><br>
                     <select name="aset" id="" required>
                         <?php for ($i=0; $i < count($asets); $i++) { ?>
-                            <option value="<?php echo $asets[$i]['id']?>"><?php echo $asets[$i]['nama_aset']." (".$asets[$i]['jml_aset'].")" ?></option>
+                            <option value="<?php echo $asets[$i]['id']?>"><?php echo $asets[$i]['nama_aset']." - ".$asets[$i]['merk']." (".$asets[$i]['jml_aset'].")" ?></option>
                         <?php } ?>
                     </select><br>
                     <label for="">Jumlah</label><br>
@@ -138,7 +146,11 @@
                     </div>
                 </form>
         <?php } 
-            else { ?>
+            else { 
+                if($status_penambahan != null){
+                    echo '<p style="text-align: center; color: #FF0000; margin-bottom: 20px;">'.$status_penambahan.'</p>';
+                }
+        ?>
                 <form action="form-pinjam.php" method="post">
                     <input type="hidden" name="status" value="belum">
                     <label for="">Nama Peminjam</label>
@@ -150,12 +162,12 @@
                     <label for="">Nama Aset</label>
                     <select name="aset" id="" required>
                         <?php for ($i=0; $i < count($asets); $i++) { ?>
-                            <option value="<?php echo $asets[$i]['id']?>"><?php echo $asets[$i]['nama_aset']." (".$asets[$i]['jml_aset'].")" ?></option>
+                            <option value="<?php echo $asets[$i]['id']?>"><?php echo $asets[$i]['nama_aset']." - ".$asets[$i]['merk']." (".$asets[$i]['jml_aset'].")" ?></option>
                         <?php } ?>
                     </select><br>
                     <label for="">Jumlah</label>
                     <input name="jml_pinjam" type="number" required><br>
-                    <label for="">Estimasi Pengembalian</label>
+                    <label for="">Tanggal Rencana Pengembalian</label>
                     <input name="rencana_kembali" type="date" required><br>
                     <label for="">Peruntukkan</label>
                     <input name="peruntukkan" type="text" required>

@@ -32,7 +32,7 @@ header .search input{
     border-radius: 5px;
 } 
 header .search button{
-    height: 30px;
+    height: 32px;
     width: 20%;
     background-color: #569AFF;
     color: #FFFFFF;
@@ -96,6 +96,11 @@ main table{
 main h2{
     font-size: 20pt;
     margin-bottom: 10px;
+}
+main h3{
+    font-size: 18pt;
+    color: #FF0000;
+    margin-top: 50px;
 }
 main table tr th{
     background-color: #287EFF;
