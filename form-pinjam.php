@@ -1,4 +1,5 @@
 <?php
+    //Menambahkan koneksi.php
     include 'koneksi.php';
 
     $status_penambahan = null;
@@ -36,6 +37,9 @@
                 // Jika jumlah aset yang akan dipinjam melebihi jumlah aset yang ada maka tidak boleh dipinjam
                 if ($jml > $aset['jml_aset']) {
                     $status_penambahan = "*jumlah pinjam melebihi jumlah aset";
+                }
+                else if ($jml < 1){
+                    $status_penambahan = "*jumlah pinjam minimal 1";
                 }
                 else {
                     //Menambahkan data peminjaman
@@ -78,6 +82,9 @@
             // Jika jumlah aset yang akan dipinjam melebihi jumlah aset yang ada maka tidak boleh dipinjam
             if ($jml > $aset['jml_aset']) {
                 $status_penambahan = "*jumlah pinjam melebihi jumlah aset";
+            }
+            else if ($jml < 1){
+                $status_penambahan = "*jumlah pinjam minimal 1";
             }
             else {
                 //Menambahkan data user baru

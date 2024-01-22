@@ -4,6 +4,7 @@
     $pw = "";
     $db_name = "lsp_pemset2";
 
+    //Mengkoneksi dengan database
     $db = mysqli_connect($host, $username, $pw, $db_name);
 
     if( !$db ){

@@ -1,4 +1,5 @@
 <?php 
+    //Menambahkan koneksi.php
     include 'koneksi.php';
 
     //Ambil Data Peminjaman
@@ -40,7 +41,7 @@
     <script src="script.js"></script>
     <div class="container">
         <header class="header">
-            <h1 class="judul">PemSet</h1>
+            <h1 class="judul"><a href="index.php" class="btn">PemSet</a></h1>
             <form class="search" method="post" action="index.php">
                 <?php if (isset($_POST['cari'])) { //mengembalikan keyword pencarian ?>
                     <input name="keyword" placeholder="   Search" value="<?php echo "  ".$_POST['keyword']?>" type="text">

@@ -1,4 +1,5 @@
 <?php
+    //Menambahkan koneksi.php
     include 'koneksi.php';
 
     //Mengambil Id

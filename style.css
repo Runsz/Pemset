@@ -16,9 +16,13 @@ header{
     height: 50px;
     padding: 10px 40px 25px;
 }
-header h1{
+header .judul{
     width: 75%;
-    font-size: 33pt;
+}
+header .judul a{
+    font-size: 34pt;
+    color: #FFFFFF;
+    text-decoration: none;
 }
 header .search{
     width: 25%;
