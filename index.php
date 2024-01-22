@@ -10,14 +10,16 @@
     //Mengecek Tanggal, Data yg terlambat dikembalikan otomatis diupdate
     for ($i=0; $i < count($peminjaman); $i++) { 
         $today = date('Y-m-d');
+        //Jika tanggal rencana kembali sudah melebihi tanggal hari ini dan status peminjaman "sedang dipinjam" maka akan diupdate menjadi "terlambat dikembalikan"
         if ($peminjaman[$i]['tgl_rencana_kembali'] < $today && $peminjaman[$i]['status'] != 'sudah dikembalikan' && $peminjaman[$i]['sts_id'] != 2) {
             $id = $peminjaman[$i]['id'];
             $status_id = 2;
 
+            //Update status peminjaman
             $query = "UPDATE transaksi_peminjaman SET status_id=$status_id WHERE id=$id";
             $sql = mysqli_query($db, $query);
 
-            //Ambil Kembali Data
+            //Ambil Kembali Data yang baru diupdate
             $query = "SELECT tp.id, u.nama, a.nama_aset, tp.jml_pinjam, tp.tgl_pinjam, tp.tgl_rencana_kembali, tp.tgl_kembali, tp.peruntukkan, s.status, s.id sts_id
                         FROM `transaksi_peminjaman` tp JOIN asets a ON tp.aset_id = a.id JOIN users u ON tp.user_id=u.id JOIN statuses s ON tp.status_id=s.id";
             $sql = mysqli_query($db, $query);
@@ -40,11 +42,11 @@
         <header class="header">
             <h1 class="judul">PemSet</h1>
             <form class="search" method="post" action="index.php">
-                <?php if (isset($_POST['cari'])) { ?>
+                <?php if (isset($_POST['cari'])) { //mengembalikan keyword pencarian ?>
                     <input name="keyword" placeholder="   Search" value="<?php echo "  ".$_POST['keyword']?>" type="text">
                 <?php } 
                 else{ ?>
-                    <input name="keyword" placeholder="   Search" type="text">
+                    <input name="keyword" placeholder="   Cari nama aset" type="text">
                 <?php } ?>
                 <button type="submit" name="cari" value="cari" class="btn">Cari</button>
             </form>
@@ -57,10 +59,11 @@
             <div class="sortir">
                 <p>Urutkan Berdasarkan</p>
                 <?php 
-                    //Function Sort(bubble sort)
+                    // Jika tombol urutkan dipencet
                     if (isset($_POST['sort'])) {
                         $key = $_POST['key'];
                 
+                        //Function Sort(bubble sort)
                         function sorting(&$arr, $key){
                             $length = count($arr);
                 
@@ -79,9 +82,11 @@
                                 }
                             }
                         }
-                
-                        sorting($peminjaman, $key); ?>
 
+                        //Menjalankan function sorting
+                        sorting($peminjaman, $key);
+
+                        //Mengembalikan keyword sorting?>
                         <form action="index.php" method="post" class="">
                             <select class="sort-item" name="key" id="">
                                 <option value="tgl_pinjam" <?php echo $key == 'tgl_pinjam' ? 'selected' : '' ?>>Tanggal</option>
@@ -109,18 +114,20 @@
             <h2>Riwayat Peminjaman Aset</h2><br>
 
             <?php
-                //Function Search(Sequential Search)
+                //Jika tombol cari dipencet
                 if (isset($_POST['cari'])) {
                     $key = $_POST['keyword'];
                     $arr = $peminjaman;
                     $new = [];
                     
+                    //Function Search(Sequential Search)
                     for ($i=0; $i < count($arr); $i++) {
                         if (strtolower($arr[$i]['nama_aset']) == strtolower($key)) {
                             array_push($new, $arr[$i]);
                         }
                     }
 
+                    //Menampilkan hasil search
                     if (count($new) != 0) { ?>
                         <table>
                             <tr>
@@ -155,12 +162,14 @@
                         }?>
                         </table>
                 <?php }
+                    //Jika hasil search tidak ditemukan
                     else{
-                         echo '<h3>Aset tidak ditemukan</h3>';
+                        echo '<h3>Aset tidak ditemukan</h3>';
                     }
                 }
 
-                else{?>
+                //Tampilan data peminjaman sebelum pencarian
+                else{ ?>
                     <table>
                         <tr>
                             <th>No</th>
